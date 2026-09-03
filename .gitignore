@@ -1,76 +1,30 @@
-# ==============================
 # Python
-# ==============================
-
 __pycache__/
 *.py[cod]
-*.pyo
-*.pyd
 
-# ==============================
-# Virtual environments
-# ==============================
-
+# Virtual environment
 .venv/
 venv/
-env/
-ENV/
 
-# ==============================
-# Jupyter Notebook
-# ==============================
-
+# Jupyter
 .ipynb_checkpoints/
 
-# ==============================
-# IDE / Editor
-# ==============================
-
+# IDE
 .vscode/
 .idea/
 
-# ==============================
-# OS files
-# ==============================
-
+# OS
 .DS_Store
 Thumbs.db
-desktop.ini
 
-# ==============================
-# Environment / Secrets
-# ==============================
-
+# Environment variables / secrets
 .env
 .env.*
 !.env.example
 
-# ==============================
 # Logs
-# ==============================
-
 *.log
 
-# ==============================
 # Temporary files
-# ==============================
-
 *.tmp
-*.temp
 *.bak
-
-# ==============================
-# Data files
-# ==============================
-
-# Ignore raw/private datasets
-resources/data/raw/
-
-# Ignore generated/processed datasets
-resources/data/processed/
-
-# ==============================
-# Generated assets
-# ==============================
-
-assets/figures/
