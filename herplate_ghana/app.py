@@ -301,8 +301,8 @@ with tab_diag:
     fig_trend.update_layout(
         title=f"National Supply vs. Women's Consumption for {selected_food}",
         xaxis=dict(title="Year"),
-        yaxis=dict(title="National Availability (g/capita/day)", titlefont=dict(color="#1E3A8A"), tickfont=dict(color="#1E3A8A")),
-        yaxis2=dict(title=f"WRA Consumption Rate (%)", titlefont=dict(color="#F59E0B"), tickfont=dict(color="#F59E0B"), overlaying="y", side="right", range=[0, 100]),
+        yaxis=dict(title=dict(text="National Availability (g/capita/day)", font=dict(color="#1E3A8A")), tickfont=dict(color="#1E3A8A")),
+        yaxis2=dict(title=dict(text=f"WRA Consumption Rate (%)", font=dict(color="#F59E0B")), tickfont=dict(color="#F59E0B"), overlaying="y", side="right", range=[0, 100]),
         legend=dict(x=0.01, y=0.99),
         template="plotly_white",
         height=450
