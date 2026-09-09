@@ -5,15 +5,19 @@ Welcome to the full repository setup for **HerPlate Ghana**, an interactive deci
 Our core research question: **Where is the pathway from Ghana's food system to women's plates breaking?**
 Our main finding: **Same dietary gap. Different bottlenecks.**
 
+*   **Track Designation:** EAT Track (Nutrition, Affordability & Diets)
+*   **Key Pitch:** *"Same dietary gap. Different bottlenecks. HerPlate Ghana helps identify where deeper intervention should begin instead of treating every low-consumption food as the same problem."*
+
+
 ---
 
 ## 📂 Project Structure
 
 This project is organized into four main components:
-1.  `data_prep.py`: Ingestion and clean-up script that generates simulated FAOSTAT (FBS, CAHD, and MDD-W) datasets for Ghana to feed your model.
+1.  `data_prep.py`: Ingestion and clean-up script that generates simulated FAOSTAT (FBS, CAHD, and MDD-W) datasets for Ghana to feed our model.
 2.  `app.py`: A highly-polished, interactive Streamlit application containing the HerPlate Diagnostic Matrix, value-chain pathway charts, and a live MILP (Mixed-Integer Linear Programming) optimization solver.
 3.  `requirements.txt`: Python dependencies required to run the project.
-4.  `README.md`: This file, guiding you step-by-step through setting up and launching the tool.
+4.  `README.md`: This file is a step-by-step guide for setting up and launching the project.
 
 ---
 
@@ -68,9 +72,5 @@ The tool features a live **Mixed-Integer Linear Programming** (MILP) model imple
 *   **Bioavailability Scaling:** In WRA, plant-based iron and zinc absorption is heavily muted (~10% for plant iron vs ~18% for heme iron found in animal foods). The optimization constraint implements a discount factor so the target of **1.8mg absorbed iron per day** is strictly satisfied with biologically useful nutrients, not just theoretical numbers.
 *   **Minimum Dietary Diversity (MDD-W):** The solver links continuous food intake variables (grams) to binary active-group variables. The solver will only solve if it can select a combination that guarantees **at least 4-5 different food groups** (with a minimum of 10g consumption per group), satisfying dietary diversity while minimizing costs.
 
----
 
-## 🏆 Presentation Quick-Reference For Your Team
-*   **Track Designation:** EAT Track (Nutrition, Affordability & Diets)
-*   **Presentation Limit:** Strictly between 5 and 7 minutes.
-*   **Key Pitch Hook:** *"Same dietary gap. Different bottlenecks. HerPlate Ghana helps identify where deeper intervention should begin instead of treating every low-consumption food as the same problem."*
+
