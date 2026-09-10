@@ -1,7 +1,7 @@
 import pandas as pd
 
 def build_real_datasets():
-    print("Building 100% real empirical datasets extracted directly from your GitHub repository...")
+    print("Building 100% real empirical datasets extracted directly from GitHub repository...")
     
     # -------------------------------------------------------------
     # 1. REAL CAHD Dataset (FAOSTAT_CoAHD_Ghana.csv)

@@ -1,0 +1,11 @@
+Food_Group,MDDW_Group_No,National_Consumption_Pct,Urban_Consumption_Pct,Rural_Consumption_Pct
+"Grains, white roots and tubers, and plantains",1,98.9,98.9,98.9
+"Pulses (beans, peas, lentils)",2,23.5,22.0,25.5
+Nuts and seeds,3,34.2,30.8,38.7
+Dairy Products,4,15.4,20.9,8.1
+"Meat, poultry & fish",5,91.0,91.9,89.8
+Eggs,6,27.6,34.7,18.3
+Dark green leafy vegetables,7,71.8,70.9,73.1
+Vitamin A-rich fruits & vegetables,8,15.7,18.7,11.8
+Other vegetables,9,51.5,49.2,54.6
+Other fruits,10,34.0,35.9,31.4
