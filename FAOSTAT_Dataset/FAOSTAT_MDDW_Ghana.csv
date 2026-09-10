@@ -1,4 +1,4 @@
-Domain Code,Domain,Survey Code,Survey,Geographic Level Code,Geographic Level,Food_Group,Food_Group,Food_Group,Food_Group,Element Code,Element,Unit,Value,Flag,Flag Description
+﻿Domain Code,Domain,Survey Code,Survey,Geographic Level Code,Geographic Level,Food Group Code,Food Group,Indicator Code,Indicator,Element Code,Element,Unit,Value,Flag,Flag Description
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10000,National,FGW0,MDD-W Food groups,6211,Percentage of women achieving MDD-W,6121,Value,%,49.9,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10002,Rural,FGW0,MDD-W Food groups,6211,Percentage of women achieving MDD-W,6121,Value,%,46.7,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10001,Urban,FGW0,MDD-W Food groups,6211,Percentage of women achieving MDD-W,6121,Value,%,52.4,E,Estimated value
@@ -13,14 +13,14 @@ MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10001,Urban,FGW1B,White roots and tubers or plantains,6212,Percentage of women consuming each food group,6121,Value,%,58.7,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10000,National,FGW2,"Pulses (beans, peas and lentils)",6212,Percentage of women consuming each food group,6121,Value,%,23.5,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10002,Rural,FGW2,"Pulses (beans, peas and lentils)",6212,Percentage of women consuming each food group,6121,Value,%,25.5,E,Estimated value
-MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10001,Urban,FGW2,"Pulses (beans, peas and lentils)",6212,Percentage of women consuming each food group,6121,Value,%,22.0,E,Estimated value
+MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10001,Urban,FGW2,"Pulses (beans, peas and lentils)",6212,Percentage of women consuming each food group,6121,Value,%,22,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10000,National,FGW3,Nuts and seeds,6212,Percentage of women consuming each food group,6121,Value,%,34.2,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10002,Rural,FGW3,Nuts and seeds,6212,Percentage of women consuming each food group,6121,Value,%,38.7,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10001,Urban,FGW3,Nuts and seeds,6212,Percentage of women consuming each food group,6121,Value,%,30.8,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10000,National,FGW4,Dairy,6212,Percentage of women consuming each food group,6121,Value,%,15.4,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10002,Rural,FGW4,Dairy,6212,Percentage of women consuming each food group,6121,Value,%,8.1,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10001,Urban,FGW4,Dairy,6212,Percentage of women consuming each food group,6121,Value,%,20.9,E,Estimated value
-MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10000,National,FGW5,"Meat, poultry and fish",6212,Percentage of women consuming each food group,6121,Value,%,91.0,E,Estimated value
+MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10000,National,FGW5,"Meat, poultry and fish",6212,Percentage of women consuming each food group,6121,Value,%,91,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10002,Rural,FGW5,"Meat, poultry and fish",6212,Percentage of women consuming each food group,6121,Value,%,89.8,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10001,Urban,FGW5,"Meat, poultry and fish",6212,Percentage of women consuming each food group,6121,Value,%,91.9,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10000,National,FGW6,Eggs,6212,Percentage of women consuming each food group,6121,Value,%,27.6,E,Estimated value
@@ -35,7 +35,7 @@ MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10000,National,FGW9,"Vegetables, other",6212,Percentage of women consuming each food group,6121,Value,%,51.5,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10002,Rural,FGW9,"Vegetables, other",6212,Percentage of women consuming each food group,6121,Value,%,54.6,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10001,Urban,FGW9,"Vegetables, other",6212,Percentage of women consuming each food group,6121,Value,%,49.2,E,Estimated value
-MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10000,National,FGW10,"Fruits, other",6212,Percentage of women consuming each food group,6121,Value,%,34.0,E,Estimated value
+MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10000,National,FGW10,"Fruits, other",6212,Percentage of women consuming each food group,6121,Value,%,34,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10002,Rural,FGW10,"Fruits, other",6212,Percentage of women consuming each food group,6121,Value,%,31.4,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10001,Urban,FGW10,"Fruits, other",6212,Percentage of women consuming each food group,6121,Value,%,35.9,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10000,National,FGW11,Fried and salty snacks,6212,Percentage of women consuming each food group,6121,Value,%,10.6,E,Estimated value
@@ -45,7 +45,7 @@ MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10002,Rural,FGW12,Sweet foods,6212,Percentage of women consuming each food group,6121,Value,%,16.8,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10001,Urban,FGW12,Sweet foods,6212,Percentage of women consuming each food group,6121,Value,%,25.7,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10000,National,FGW13,Sweet beverages,6212,Percentage of women consuming each food group,6121,Value,%,37.1,E,Estimated value
-MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10002,Rural,FGW13,Sweet beverages,6212,Percentage of women consuming each food group,6121,Value,%,27.0,E,Estimated value
+MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10002,Rural,FGW13,Sweet beverages,6212,Percentage of women consuming each food group,6121,Value,%,27,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10001,Urban,FGW13,Sweet beverages,6212,Percentage of women consuming each food group,6121,Value,%,44.7,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10000,National,FGW15,Red palm oil,6212,Percentage of women consuming each food group,6121,Value,%,30.2,E,Estimated value
 MDDW,"Diversity (MDD-W, Minimum Dietary Diversity for Women)",288_2022,Ghana - 2022,10002,Rural,FGW15,Red palm oil,6212,Percentage of women consuming each food group,6121,Value,%,28.3,E,Estimated value

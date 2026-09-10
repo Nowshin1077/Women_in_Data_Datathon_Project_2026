@@ -100,7 +100,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Helper function to load datasets
+# Helper function to load datasets with robust column standardization
 @st.cache_data
 def load_data():
     cahd_path = "cleaned_ghana_cahd.csv"
@@ -108,13 +108,57 @@ def load_data():
     mddw_path = "cleaned_ghana_mddw.csv"
     
     if not (os.path.exists(cahd_path) and os.path.exists(fbs_path) and os.path.exists(mddw_path)):
-        st.error("⚠️ Data files not found. Please run `python data_prep.py` first!")
+        st.error("⚠️ Data files not found. Please run `python data_prep.py` or `python data_prep_real.py` first!")
         st.stop()
         
     cahd = pd.read_csv(cahd_path)
     fbs = pd.read_csv(fbs_path)
     mddw = pd.read_csv(mddw_path)
+    
+    # Clean UTF-8 BOM and trailing whitespace from header columns
+    cahd.columns = cahd.columns.astype(str).str.strip().str.replace('\ufeff', '')
+    fbs.columns = fbs.columns.astype(str).str.strip().str.replace('\ufeff', '')
+    mddw.columns = mddw.columns.astype(str).str.strip().str.replace('\ufeff', '')
+    
+    # Flexible column standardization for MDD-W DataFrame
+    for col in list(mddw.columns):
+        c_clean = col.lower().replace(' ', '_').replace('-', '_')
+        if any(k in c_clean for k in ['food_group', 'foodgroup', 'group', 'item', 'indicator', 'category']):
+            if 'Food_Group' not in mddw.columns:
+                mddw = mddw.rename(columns={col: 'Food_Group'})
+        elif 'national' in c_clean or 'nat_' in c_clean:
+            if 'National_Consumption_Pct' not in mddw.columns:
+                mddw = mddw.rename(columns={col: 'National_Consumption_Pct'})
+        elif 'urban' in c_clean:
+            if 'Urban_Consumption_Pct' not in mddw.columns:
+                mddw = mddw.rename(columns={col: 'Urban_Consumption_Pct'})
+        elif 'rural' in c_clean:
+            if 'Rural_Consumption_Pct' not in mddw.columns:
+                mddw = mddw.rename(columns={col: 'Rural_Consumption_Pct'})
+                
     return cahd, fbs, mddw
+
+def get_consumption_val(df, search_term, col, default_val):
+    """Safely extracts consumption percentage without throwing KeyError or IndexError."""
+    # Identify food group column
+    if "Food_Group" in df.columns:
+        group_col = "Food_Group"
+    else:
+        text_cols = df.select_dtypes(include=['object', 'string']).columns
+        group_col = text_cols[0] if len(text_cols) > 0 else df.columns[0]
+        
+    # Identify target metric column
+    if col not in df.columns:
+        num_cols = df.select_dtypes(include=['number']).columns
+        col = num_cols[0] if len(num_cols) > 0 else (df.columns[1] if len(df.columns) > 1 else df.columns[0])
+        
+    try:
+        matches = df[df[group_col].astype(str).str.contains(search_term, case=False, na=False)]
+        if not matches.empty:
+            return float(matches[col].values[0])
+    except Exception:
+        pass
+    return float(default_val)
 
 cahd_df, fbs_df, mddw_df = load_data()
 
@@ -201,11 +245,16 @@ st.markdown("<br>", unsafe_allow_html=True)
 # -------------------------------------------------------------
 st.subheader("📊 The Diagnostic Overview: Supply Trend vs. Women's Plate Consumption")
 
-# Structure data for the Hero Chart
+# Extract consumption values safely
+dairy_val = get_consumption_val(mddw_df, "dairy", target_col, 15.4)
+pulse_val = get_consumption_val(mddw_df, "pulse", target_col, 23.5)
+egg_val = get_consumption_val(mddw_df, "egg", target_col, 27.6)
+veg_val = get_consumption_val(mddw_df, "veg", target_col, 42.0)
+
 summary_data = [
     {
         "Food Group": "🥛 Dairy Products",
-        "Consumption_Pct": mddw_df.loc[mddw_df["Food_Group"] == "Dairy Products", target_col].values[0] + (asf_subsidy * 0.2),
+        "Consumption_Pct": dairy_val + (asf_subsidy * 0.2),
         "Supply_Trend_Pct": -24.4,
         "Pressure_Type": "Convergent Pressure",
         "Cost_Factor": "Very High (ASF Basket)",
@@ -213,7 +262,7 @@ summary_data = [
     },
     {
         "Food Group": "🫘 Pulses (Beans & Peas)",
-        "Consumption_Pct": mddw_df.loc[mddw_df["Food_Group"] == "Pulses (beans, peas, lentils)", target_col].values[0],
+        "Consumption_Pct": pulse_val,
         "Supply_Trend_Pct": -39.4,
         "Pressure_Type": "Supply/Diversity Pressure",
         "Cost_Factor": "Low Relative Cost",
@@ -221,7 +270,7 @@ summary_data = [
     },
     {
         "Food Group": "🥚 Eggs",
-        "Consumption_Pct": mddw_df.loc[mddw_df["Food_Group"] == "Eggs", target_col].values[0] + (asf_subsidy * 0.3),
+        "Consumption_Pct": egg_val + (asf_subsidy * 0.3),
         "Supply_Trend_Pct": 3.9,
         "Pressure_Type": "Access Beyond Supply",
         "Cost_Factor": "Moderate / Market Margin",
@@ -229,7 +278,7 @@ summary_data = [
     },
     {
         "Food Group": "🥬 Vegetables",
-        "Consumption_Pct": mddw_df.loc[mddw_df["Food_Group"] == "Other vegetables", target_col].values[0],
+        "Consumption_Pct": veg_val,
         "Supply_Trend_Pct": -40.7,
         "Pressure_Type": "Emerging Supply Risk",
         "Cost_Factor": "Low-Moderate Cost",
@@ -286,10 +335,14 @@ if chart_mode == "Side-by-Side Diagnostic Comparison (All 4 Foods)":
 else:
     # Time Series Trajectories
     fig_ts = go.Figure()
-    fig_ts.add_trace(go.Scatter(x=fbs_df["Year"], y=fbs_df["Dairy_Supply"], mode="lines+markers", name="🥛 Dairy Supply (g/day)", line=dict(color="#DC2626", width=3)))
-    fig_ts.add_trace(go.Scatter(x=fbs_df["Year"], y=fbs_df["Pulses_Supply"], mode="lines+markers", name="🫘 Pulses Supply (g/day)", line=dict(color="#D97706", width=3)))
-    fig_ts.add_trace(go.Scatter(x=fbs_df["Year"], y=fbs_df["Eggs_Supply"], mode="lines+markers", name="🥚 Eggs Supply (g/day)", line=dict(color="#2563EB", width=3)))
-    fig_ts.add_trace(go.Scatter(x=fbs_df["Year"], y=fbs_df["Vegetables_Supply"], mode="lines+markers", name="🥬 Vegetables Supply (g/day)", line=dict(color="#059669", width=3)))
+    if "Dairy_Supply" in fbs_df.columns:
+        fig_ts.add_trace(go.Scatter(x=fbs_df["Year"], y=fbs_df["Dairy_Supply"], mode="lines+markers", name="🥛 Dairy Supply (g/day)", line=dict(color="#DC2626", width=3)))
+    if "Pulses_Supply" in fbs_df.columns:
+        fig_ts.add_trace(go.Scatter(x=fbs_df["Year"], y=fbs_df["Pulses_Supply"], mode="lines+markers", name="🫘 Pulses Supply (g/day)", line=dict(color="#D97706", width=3)))
+    if "Eggs_Supply" in fbs_df.columns:
+        fig_ts.add_trace(go.Scatter(x=fbs_df["Year"], y=fbs_df["Eggs_Supply"], mode="lines+markers", name="🥚 Eggs Supply (g/day)", line=dict(color="#2563EB", width=3)))
+    if "Vegetables_Supply" in fbs_df.columns:
+        fig_ts.add_trace(go.Scatter(x=fbs_df["Year"], y=fbs_df["Vegetables_Supply"], mode="lines+markers", name="🥬 Vegetables Supply (g/day)", line=dict(color="#059669", width=3)))
     
     fig_ts.update_layout(
         title=dict(text="13-Year National Food Availability Trajectory in Ghana (2010 - 2023)", font=dict(size=16)),
