@@ -6,8 +6,7 @@ Our core research question: **Where is the pathway from Ghana's food system to w
 Our main finding: **Same dietary gap. Different bottlenecks.**
 
 *   **Track Designation:** EAT Track (Nutrition, Affordability & Diets)
-*   **Key Pitch:** *"Same dietary gap. Different bottlenecks. HerPlate Ghana helps identify where deeper intervention should begin instead of treating every low-consumption food as the same problem."*
-
+*   **Key Pitch of Our Work:** *"Same dietary gap. Different bottlenecks. HerPlate Ghana helps identify where deeper intervention should begin instead of treating every low-consumption food as the same problem."*
 
 ---
 
