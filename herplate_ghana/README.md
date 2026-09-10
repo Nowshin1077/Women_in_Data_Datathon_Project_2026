@@ -71,6 +71,3 @@ This will automatically launch the browser window running your beautiful **HerPl
 The tool features a live **Mixed-Integer Linear Programming** (MILP) model implemented using the `PuLP` package. 
 *   **Bioavailability Scaling:** In WRA, plant-based iron and zinc absorption is heavily muted (~10% for plant iron vs ~18% for heme iron found in animal foods). The optimization constraint implements a discount factor so the target of **1.8mg absorbed iron per day** is strictly satisfied with biologically useful nutrients, not just theoretical numbers.
 *   **Minimum Dietary Diversity (MDD-W):** The solver links continuous food intake variables (grams) to binary active-group variables. The solver will only solve if it can select a combination that guarantees **at least 4-5 different food groups** (with a minimum of 10g consumption per group), satisfying dietary diversity while minimizing costs.
-
-
-
