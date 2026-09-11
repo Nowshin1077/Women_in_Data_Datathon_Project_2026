@@ -1,72 +1,104 @@
-# 🇬🇭 HerPlate Ghana — 2026 Datathon Project Setup
+### Note: Core Pipeline & Streamlit Web App
 
-Welcome to the full repository setup for **HerPlate Ghana**, an interactive decision-support tool built to map the breaking links between food supply, market cost, and women's plates (Minimum Dietary Diversity for Women - MDD-W). 
+# 🇬🇭 HerPlate Ghana: Food System Bottleneck Diagnostic
 
-Our core research question: **Where is the pathway from Ghana's food system to women's plates breaking?**
-Our main finding: **Same dietary gap. Different bottlenecks.**
-
-*   **Track Designation:** EAT Track (Nutrition, Affordability & Diets)
-*   **Key Pitch of Our Work:** *"Same dietary gap. Different bottlenecks. HerPlate Ghana helps identify where deeper intervention should begin instead of treating every low-consumption food as the same problem."*
+**Decision-Support System for Maternal Agrifood Reform**  
+*Women in Data Science Datathon Project 2026*
 
 ---
 
-## 📂 Project Structure
+## 📌 Project Overview & Core Question
 
-This project is organized into four main components:
-1.  `data_prep.py`: Ingestion and clean-up script that generates simulated FAOSTAT (FBS, CAHD, and MDD-W) datasets for Ghana to feed our model.
-2.  `app.py`: A highly-polished, interactive Streamlit application containing the HerPlate Diagnostic Matrix, value-chain pathway charts, and a live MILP (Mixed-Integer Linear Programming) optimization solver.
-3.  `requirements.txt`: Python dependencies required to run the project.
-4.  `README.md`: This file is a step-by-step guide for setting up and launching the project.
+**Core Question:** *Where is the pathway from Ghana's food system to women's plates breaking?*
+
+Rather than assuming all nutrition gaps share the same cause, **HerPlate Ghana** integrates three independent UN FAOSTAT datasets to classify nutritious food categories by their specific structural bottleneck:
+
+1. **Healthy-Diet Affordability (CoAHD 2017–2025)**: Evaluates macro financial barriers and food basket component costs.
+2. **Minimum Dietary Diversity for Women (MDD-W 2022)**: Measures actual consumption rates among Women of Reproductive Age (WRA 15–49) across National, Urban, and Rural demographics.
+3. **Food Balances (FBS 2010–2023)**: Tracks 13-year national daily per-capita food availability (`g/capita/day`) to identify supply trajectories.
 
 ---
 
-## 🛠️ Step-by-Step Installation & Run Guide
+## 🎯 Main Empirical Findings & Bottleneck Classifications
 
-Follow these steps to run the complete **HerPlate Ghana** suite on your local machine:
+| Food Group | Women's Plate Consumption (2022) | 10-Yr National Supply Trend | Parent Cost Component Share | Bottleneck Classification | Structural Breakdown Location |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 🥛 **Dairy Products** | **15.4%** *(Rural: 8.1%)* | **-24.4%** *(Declining)* | High (ASF Basket ~41.1%) | **Convergent Pressure** | Production ➔ Market Cold Chain ➔ Household |
+| 🫘 **Pulses (Legumes)** | **23.5%** *(Rural: 25.5%)* | **-39.4%** *(Declining)* | Low Relative Cost ($0.39 PPP) | **Supply / Diversity Pressure** | Upstream Agricultural Production |
+| 🥚 **Eggs** | **27.6%** *(Urban: 34.7%)* | **+3.9%** *(Stable)* | Moderate Market Margin | **Access Beyond Supply** | Local Market Distribution ➔ Intra-Household |
+| 🥬 **Vegetables** | **51.5%** *(Leafy: 71.8%)* | **-40.7%** *(Declining)* | Low-Moderate Cost ($0.46 PPP) | **Emerging Supply Risk** | Upstream Farming & Irrigation |
 
-### Step 1: Clone or Set Up Your Project Directory
-Create a new directory on your local machine and navigate into it:
-```bash
-mkdir herplate_ghana
-cd herplate_ghana
+---
+
+## 📂 Project Repository Structure
+
+```text
+HerPlate_Ghana/
+├── eda_coahd.py             # Individual EDA for Cost & Affordability (CoAHD)
+├── eda_mddw.py              # Individual EDA for Women's Dietary Diversity (MDD-W)
+├── eda_fbs.py               # Individual EDA for Food Balances 13-Yr Supply Trends (FBS)
+├── data_pipeline.py         # Data processing pipeline (Merates 2022 baseline matrix)
+├── app.py                   # Production Streamlit Web Dashboard
+├── requirements.txt         # Python dependencies
+└── README.md                # Project documentation & setup guide
 ```
-Place `data_prep.py`, `app.py`, and `requirements.txt` inside this folder.
 
-### Step 2: Set Up a Virtual Environment (Highly Recommended)
-Create a Python virtual environment to prevent package version conflicts:
+---
+
+## 🛠️ Step-by-Step Setup & Execution Workflow
+
+### Step 1: Clone Repository & Create Virtual Environment
 ```bash
-# On macOS/Linux
-python3 -m venv venv
-source venv/bin/activate
+git clone https://github.com/Nowshin1077/Women_in_Data_Datathon_Project_2026.git
+cd Women_in_Data_Datathon_Project_2026
 
-# On Windows
+# Create virtual environment
 python -m venv venv
+
+# Activate environment
+# On Windows Command Prompt:
 venv\Scripts\activate
+# On macOS / Linux:
+source venv/bin/activate
 ```
 
-### Step 3: Install Required Packages
-Install all necessary data science, optimization, and visualization libraries:
+### Step 2: Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### Step 4: Run Data Preparation
-Run the ingestion script to clean and output the aligned dataset files. This creates `cleaned_ghana_cahd.csv`, `cleaned_ghana_fbs.csv`, and `cleaned_ghana_mddw.csv` in your directory:
+### Step 3: Run Exploratory Data Analysis (EDA)
+Execute the three individual EDA scripts to inspect the empirical figures:
 ```bash
-python data_prep.py
+python eda_coahd.py
+python eda_mddw.py
+python eda_fbs.py
 ```
 
-### Step 5: Launch the Streamlit Decision-Support Tool
-With your datasets generated, boot up the local interactive app server:
+### Step 4: Run Data Processing Pipeline
+Merge the datasets on the 2022 baseline and generate clean CSV exports:
 ```bash
-streamlit run app.py
+python data_pipeline.py
 ```
-This will automatically launch the browser window running your beautiful **HerPlate Ghana** decision-support tool!
+
+### Step 5: Launch Streamlit Decision-Support Dashboard
+```bash
+python -m streamlit run app.py
+```
 
 ---
 
-## 🧪 Deep-Dive Math: Bioavailability & MILP Constraints
+## ☁️ Deploying on Streamlit Community Cloud
 
-The tool features a live **Mixed-Integer Linear Programming** (MILP) model implemented using the `PuLP` package. 
-*   **Bioavailability Scaling:** In WRA, plant-based iron and zinc absorption is heavily muted (~10% for plant iron vs ~18% for heme iron found in animal foods). The optimization constraint implements a discount factor so the target of **1.8mg absorbed iron per day** is strictly satisfied with biologically useful nutrients, not just theoretical numbers.
-*   **Minimum Dietary Diversity (MDD-W):** The solver links continuous food intake variables (grams) to binary active-group variables. The solver will only solve if it can select a combination that guarantees **at least 4-5 different food groups** (with a minimum of 10g consumption per group), satisfying dietary diversity while minimizing costs.
+1. Commit and push all files to your GitHub repository:
+   ```bash
+   git add .
+   git commit -m "Deploy HerPlate Ghana dashboard and EDA scripts"
+   git push origin main
+   ```
+2. Go to [share.streamlit.io](https://share.streamlit.io) and click **New App**.
+3. Select:
+   * **Repository**: `Nowshin1077/Women_in_Data_Datathon_Project_2026`
+   * **Branch**: `main`
+   * **Main file path**: `app.py`
+4. Click **Deploy!**

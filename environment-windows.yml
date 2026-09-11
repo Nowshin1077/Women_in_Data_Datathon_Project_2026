@@ -1,4 +1,4 @@
-name: nutricost-ghana
+name: herplate-ghana
 
 channels:
   - conda-forge
@@ -6,14 +6,11 @@ channels:
 
 dependencies:
   - python=3.11
+  - pandas>=2.0.0
+  - numpy>=1.24.0
+  - plotly>=5.15.0
+  - requests>=2.31.0
   - pip
-  - pandas
-  - numpy
-  - scipy
-  - matplotlib
-  - seaborn
-  - plotly
-  - jupyter
-  - openpyxl
+  
   - pip:
-      - streamlit
+      - streamlit>=1.30.0
