@@ -14,10 +14,10 @@ import numpy as np
 # ==============================================================================
 
 st.set_page_config(
-    page_title="HerPlate Ghana",
-    page_icon="🥗",
-    layout="wide",
-    initial_sidebar_state="collapsed"
+    page_title="HerPlate Ghana",
+    page_icon="🥗",
+    layout="wide",
+    initial_sidebar_state="collapsed"
 )
 
 
