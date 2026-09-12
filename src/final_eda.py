@@ -12,25 +12,67 @@ import matplotlib.pyplot as plt
 # 1. SETUP
 # ==============================================================================
 
+
 print("=" * 80)
 print("HERPLATE GHANA - EXPLORATORY DATA ANALYSIS")
 print("Women in Data Datathon 2026")
 print("=" * 80)
 
+"""
 BASE_DIR = Path(__file__).resolve().parent
 
 mdd_file = BASE_DIR / "dataset" / "FAOSTAT_MDDW_Ghana.csv"
 fb_file = BASE_DIR / "dataset" / "FAOSTAT_FB_Ghana.csv"
 
+"""
+
+BASE_DIR = Path(__file__).resolve().parent
+
+# --- ADDED: Auto-detect correct dataset folder location or GitHub fallback ---
+if not (BASE_DIR / "dataset").exists():
+  if (BASE_DIR.parent / "dataset").exists():
+    BASE_DIR = BASE_DIR.parent
+  elif (BASE_DIR / "FAOSTAT_Dataset").exists():
+    BASE_DIR = BASE_DIR / "FAOSTAT_Dataset"
+  elif (BASE_DIR.parent / "FAOSTAT_Dataset").exists():
+    BASE_DIR = BASE_DIR.parent / "FAOSTAT_Dataset"
+
+# If local dataset folder still does not exist, point to GitHub raw data
+GITHUB_RAW = "https://raw.githubusercontent.com/Nowshin1077/Women_in_Data_Datathon_Project_2026/main/dataset"
+if not (BASE_DIR / "dataset").exists() and not (
+    BASE_DIR / "FAOSTAT_MDDW_Ghana.csv"
+).exists():
+
+  class RemoteDatasetPath:
+
+    def __init__(self, filename):
+      self.url = f"{GITHUB_RAW}/{filename}"
+
+    def __truediv__(self, other):
+      return RemoteDatasetPath(other)
+
+    def exists(self):
+      return True
+
+    def __fspath__(self):
+      return self.url
+
+    def __str__(self):
+      return self.url
+
+  BASE_DIR = RemoteDatasetPath("")
+# -----------------------------------------------------------------------------
+
+mdd_file = BASE_DIR / "dataset" / "FAOSTAT_MDDW_Ghana.csv"
+fb_file = BASE_DIR / "dataset" / "FAOSTAT_FB_Ghana.csv"
+
+
 if not mdd_file.exists():
-    raise FileNotFoundError(
-        f"MDD-W dataset not found at: {mdd_file}"
-    )
+  raise FileNotFoundError(f"MDD-W dataset not found at: {mdd_file}")
+
 
 if not fb_file.exists():
-    raise FileNotFoundError(
-        f"Food Balances dataset not found at: {fb_file}"
-    )
+  raise FileNotFoundError(f"Food Balances dataset not found at: {fb_file}")
 
 # ==============================================================================
 # 2. LOAD MDD-W DATA
