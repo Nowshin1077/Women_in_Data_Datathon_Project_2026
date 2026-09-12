@@ -45,7 +45,7 @@ st.markdown(
     .hero-text p {
         font-size: 1.15rem;
         color: var(--text-color);
-        opacity: 0.85;
+        opacity: 0.8;
     }
 
     .ghana-accent {
@@ -55,12 +55,16 @@ st.markdown(
         color: var(--text-color);
     }
 
-    /* Theme-adaptive grey card for both Light and Dark mode */
-    .metric-card {
-        background-color: rgba(128, 128, 128, 0.12);
-        border: 1px solid rgba(128, 128, 128, 0.2);
+    /* Soft grey cards in Light Mode, dark grey cards in Dark Mode */
+    .metric-card, .insight-card {
+        background-color: rgba(128, 128, 128, 0.1);
+        border: 1px solid rgba(128, 128, 128, 0.22);
         padding: 1.2rem;
         border-radius: 12px;
+        color: var(--text-color);
+    }
+
+    .metric-card {
         text-align: center;
         min-height: 115px;
     }
@@ -78,12 +82,7 @@ st.markdown(
     }
 
     .insight-card {
-        background-color: rgba(128, 128, 128, 0.12);
-        border: 1px solid rgba(128, 128, 128, 0.2);
-        padding: 1.2rem;
-        border-radius: 12px;
         margin-bottom: 1rem;
-        color: var(--text-color);
     }
 
     .insight-card h4 {
@@ -106,6 +105,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
 # ==============================================================================
 # 3. CORE DATA
@@ -357,14 +357,14 @@ with tab1:
         "concentrated in cereals and meat, while pulses and vegetables declined."
     )
 
- fig = px.bar(
+fig = px.bar(
         food_supply_change,
         x="Change (%)",
         y="Food Group",
         orientation="h",
         title="Change in food supply, 2010-2023",
         labels={"Change (%)": "Change (%)"},
-        color_discrete_sequence=["#7eb8f7"]  # Exact soft light blue from your screenshot
+        color_discrete_sequence=["#7EB2DD"]
     )
 
     fig.add_vline(
@@ -459,12 +459,13 @@ with tab2:
         ]
     })
 
-    fig = px.bar(
+fig = px.bar(
         comparison,
         x="Geographic Level",
         y="Women consuming (%)",
         text="Women consuming (%)",
-        title=f"{selected_food} consumption by geographic level"
+        title=f"{selected_food} consumption by geographic level",
+        color_discrete_sequence=["#7EB2DD"]
     )
 
     fig.update_traces(
@@ -476,14 +477,16 @@ with tab2:
         yaxis_title="Women consuming (%)",
         xaxis_title="",
         yaxis_range=[0, 100],
-        height=450
+        height=450,
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)"
     )
 
     st.plotly_chart(
         fig,
         use_container_width=True
     )
-
+    
     gap = selected_row["Urban"] - selected_row["Rural"]
 
     st.markdown(
