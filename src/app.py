@@ -818,3 +818,4 @@ st. markdown(
 
 st.caption(
     "HerPlate Ghana | Women in Data 2026 Datathon"
+)
