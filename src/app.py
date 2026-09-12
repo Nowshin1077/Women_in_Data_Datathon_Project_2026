@@ -22,7 +22,7 @@ st.set_page_config(
 
 
 # ==============================================================================
-# 2. CUSTOM STYLING
+# 2. CUSTOM STYLING (THEME-ADAPTIVE)
 # ==============================================================================
 
 st.markdown(
@@ -33,53 +33,41 @@ st.markdown(
     }
 
     .hero-text {
-        padding: 1rem 0 1rem 0;
+        padding: 0.5rem 0 1rem 0;
     }
 
     .hero-text h1 {
-        font-size: 3rem;
-        margin-bottom: 0.3rem;
-    }
-
-    .hero-text p {
-        font-size: 1.15rem;
-        color: #555;
+        font-size: 2.8rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.2;
     }
 
     .ghana-accent {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         font-weight: 600;
         margin-bottom: 0.5rem;
     }
 
-    .metric-card {
-        background-color: #f7f7f7;
-        padding: 1.2rem;
-        border-radius: 12px;
-        text-align: center;
-        min-height: 115px;
-    }
-
-    .metric-value {
-        font-size: 2rem;
-        font-weight: 700;
-    }
-
-    .metric-label {
-        font-size: 0.9rem;
-        color: #666;
-    }
-
+    /* Adaptive Insight Cards using Streamlit Secondary Background */
     .insight-card {
-        background-color: #f8f8f8;
+        background-color: var(--secondary-background-color);
+        color: var(--text-color);
         padding: 1.2rem;
         border-radius: 12px;
+        border: 1px solid rgba(128, 128, 128, 0.2);
         margin-bottom: 1rem;
     }
 
-    .small-note {
-        color: #666;
-        font-size: 0.85rem;
+    .insight-card h4 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        color: var(--text-color);
+    }
+
+    .insight-card p {
+        margin-bottom: 0;
+        color: var(--text-color);
+        opacity: 0.9;
     }
     </style>
     """,
@@ -249,7 +237,6 @@ with hero_col2:
         use_container_width=True
     )
 
-
 # ==============================================================================
 # 5. KEY METRICS
 # ==============================================================================
@@ -259,59 +246,38 @@ st.markdown("### The Ghana food story")
 m1, m2, m3, m4 = st.columns(4)
 
 with m1:
-    st.markdown(
-        """
-        <div class="metric-card">
-            <div class="metric-value">49.9%</div>
-            <div class="metric-label">
-                Women achieving MDD-W
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True
+    st.metric(
+        label="Women achieving MDD-W",
+        value="49.9%",
+        delta="Target: 50%",
+        delta_color="off"
     )
 
 with m2:
-    st.markdown(
-        """
-        <div class="metric-card">
-            <div class="metric-value">-39.3%</div>
-            <div class="metric-label">
-                Pulse supply
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True
+    st.metric(
+        label="Pulse supply (2010–2023)",
+        value="-39.3%",
+        delta="-39.3% Contraction",
+        delta_color="inverse"
     )
 
 with m3:
-    st.markdown(
-        """
-        <div class="metric-card">
-            <div class="metric-value">-40.7%</div>
-            <div class="metric-label">
-                Vegetable supply
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True
+    st.metric(
+        label="Vegetable supply (2010–2023)",
+        value="-40.7%",
+        delta="-40.7% Contraction",
+        delta_color="inverse"
     )
 
 with m4:
-    st.markdown(
-        """
-        <div class="metric-card">
-            <div class="metric-value">+32.0%</div>
-            <div class="metric-label">
-                Meat supply
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True
+    st.metric(
+        label="Meat supply (2010–2023)",
+        value="+32.0%",
+        delta="+32.0% Expansion",
+        delta_color="normal"
     )
 
 st.markdown("---")
-
 
 # ==============================================================================
 # 6. NAVIGATION
