@@ -55,84 +55,60 @@ st.markdown(
         color: var(--text-color);
     }
 
-    /* Base Card Styling - Light Mode Default (Grey like SS) */
+    /* Fixed Whitish-Grey Card Style for BOTH Light and Dark Modes */
     .metric-card, .insight-card {
-        background-color: #f1f3f5;
-        border: 1px solid #e2e8f0;
-        padding: 1.2rem;
-        border-radius: 12px;
-        color: #1e293b;
+        background-color: #f6f7f9 !important;
+        border: 1px solid #dcdfe4 !important;
+        padding: 1.2rem !important;
+        border-radius: 12px !important;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12) !important;
     }
 
     .metric-card {
-        text-align: center;
-        min-height: 115px;
+        text-align: center !important;
+        min-height: 115px !important;
     }
 
+    /* Keep Numbers and Writing Dark & Visible Inside the Whitish Cards */
     .metric-value {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #0f172a;
+        font-size: 2rem !important;
+        font-weight: 700 !important;
+        color: #111827 !important;
     }
 
     .metric-label {
-        font-size: 0.9rem;
-        color: #475569;
+        font-size: 0.9rem !important;
+        font-weight: 500 !important;
+        color: #4b5563 !important;
     }
 
     .insight-card {
-        margin-bottom: 1rem;
+        margin-bottom: 1rem !important;
     }
 
     .insight-card h4 {
-        color: #0f172a;
-        margin-top: 0;
+        color: #111827 !important;
+        font-size: 1.15rem !important;
+        font-weight: 600 !important;
+        margin-top: 0 !important;
+        margin-bottom: 0.4rem !important;
     }
 
     .insight-card p {
-        color: #334155;
-        margin-bottom: 0;
+        color: #374151 !important;
+        font-size: 0.95rem !important;
+        line-height: 1.45 !important;
+        margin-bottom: 0 !important;
+    }
+
+    .insight-card strong {
+        color: #111827 !important;
+        font-weight: 700 !important;
     }
 
     .small-note {
-        color: #64748b;
-        font-size: 0.85rem;
-    }
-
-    /* Dark Mode Adaptability: Target dark background */
-    @media (prefers-color-scheme: dark) {
-        .metric-card, .insight-card {
-            background-color: #1e2530 !important;
-            border: 1px solid #2d3748 !important;
-            color: #f8fafc !important;
-        }
-        .metric-value, .insight-card h4 {
-            color: #ffffff !important;
-        }
-        .metric-label, .insight-card p {
-            color: #cbd5e1 !important;
-        }
-    }
-
-    /* Streamlit in-app dark theme override (when user toggles theme manually in settings) */
-    [data-theme="dark"] .metric-card, 
-    [data-theme="dark"] .insight-card,
-    .stApp[data-test-script-state] [data-testid="stAppViewContainer"] .metric-card,
-    .stApp[data-test-script-state] [data-testid="stAppViewContainer"] .insight-card {
-        background-color: var(--secondary-background-color);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: var(--text-color);
-    }
-    
-    [data-theme="dark"] .metric-value,
-    [data-theme="dark"] .insight-card h4 {
-        color: var(--text-color);
-    }
-
-    [data-theme="dark"] .metric-label,
-    [data-theme="dark"] .insight-card p {
-        color: var(--text-color);
-        opacity: 0.85;
+        color: #6b7280 !important;
+        font-size: 0.85rem !important;
     }
     </style>
     """,
