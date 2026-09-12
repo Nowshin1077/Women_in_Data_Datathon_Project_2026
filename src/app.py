@@ -82,7 +82,6 @@ st.markdown(
         padding: 1.2rem;
         border-radius: 12px;
         margin-bottom: 1rem;
-        color: var(--text-color);
     }
 
     .insight-card h4 {
@@ -105,7 +104,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
 
 # ==============================================================================
 # 3. CORE DATA
