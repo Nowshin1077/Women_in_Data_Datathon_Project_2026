@@ -39,50 +39,91 @@ st.markdown(
     .hero-text h1 {
         font-size: 3rem;
         margin-bottom: 0.3rem;
+        color: inherit;
     }
 
     .hero-text p {
         font-size: 1.15rem;
-        color: #555;
+        opacity: 0.8;
     }
 
     .ghana-accent {
         font-size: 1.5rem;
         font-weight: 600;
         margin-bottom: 0.5rem;
+        color: inherit;
+    }
+
+    /* Light Mode Card Styling (Grey, non-white) */
+    .metric-card, .insight-card {
+        background-color: #f1f3f5 !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 12px;
+        padding: 1.2rem;
+        color: #1e293b !important;
     }
 
     .metric-card {
-        background-color: #f7f7f7;
-        padding: 1.2rem;
-        border-radius: 12px;
         text-align: center;
         min-height: 115px;
+    }
+
+    .insight-card {
+        margin-bottom: 1rem;
     }
 
     .metric-value {
         font-size: 2rem;
         font-weight: 700;
+        color: #0f172a !important;
     }
 
     .metric-label {
         font-size: 0.9rem;
-        color: #666;
+        color: #475569 !important;
     }
 
-    .insight-card {
-        background-color: #f8f8f8;
-        padding: 1.2rem;
-        border-radius: 12px;
-        margin-bottom: 1rem;
+    .insight-card h4 {
+        color: #0f172a !important;
+        margin-top: 0;
+    }
+
+    .insight-card p {
+        color: #334155 !important;
+        margin-bottom: 0;
     }
 
     .small-note {
-        color: #666;
+        color: #64748b !important;
         font-size: 0.85rem;
+    }
+
+    /* Dark Mode Overrides (Subtle dark-grey container) */
+    @media (prefers-color-scheme: dark) {
+        .metric-card, .insight-card {
+            background-color: #1e2530 !important;
+            border: 1px solid #2d3748 !important;
+            color: #e2e8f0 !important;
+        }
+        .metric-value {
+            color: #f8fafc !important;
+        }
+        .metric-label {
+            color: #94a3b8 !important;
+        }
+        .insight-card h4 {
+            color: #f8fafc !important;
+        }
+        .insight-card p {
+            color: #cbd5e1 !important;
+        }
+        .small-note {
+            color: #94a3b8 !important;
+        }
     }
     </style>
     """,
+    
     unsafe_allow_html=True
 )
 
@@ -343,18 +384,23 @@ with tab1:
         y="Food Group",
         orientation="h",
         title="Change in food supply, 2010-2023",
-        labels={"Change (%)": "Change (%)"}
+        labels={"Change (%)": "Change (%)"},
+        color_discrete_sequence=["#72b5f8"]  # Exact light blue bar fill from screenshot
     )
 
     fig.add_vline(
         x=0,
-        line_width=1
+        line_width=1,
+        line_color="#94a3b8"
     )
 
     fig.update_layout(
         height=500,
         yaxis={"categoryorder": "total ascending"},
-        showlegend=False
+        showlegend=False,
+        plot_bgcolor="rgba(0,0,0,0)",
+        paper_bgcolor="rgba(0,0,0,0)",
+        margin=dict(l=20, r=20, t=40, b=20)
     )
 
     st.plotly_chart(
@@ -440,7 +486,8 @@ with tab2:
         x="Geographic Level",
         y="Women consuming (%)",
         text="Women consuming (%)",
-        title=f"{selected_food} consumption by geographic level"
+        title=f"{selected_food} consumption by geographic level",
+        color_discrete_sequence=["#72b5f8"]  # Exact light blue from screenshot
     )
 
     fig.update_traces(
@@ -451,15 +498,18 @@ with tab2:
     fig.update_layout(
         yaxis_title="Women consuming (%)",
         xaxis_title="",
-        yaxis_range=[0, 100],
-        height=450
+        yaxis_range=[0, max(comparison["Women consuming (%)"].max() + 10, 50)],
+        height=450,
+        plot_bgcolor="rgba(0,0,0,0)",
+        paper_bgcolor="rgba(0,0,0,0)",
+        margin=dict(l=20, r=20, t=40, b=20)
     )
 
     st.plotly_chart(
         fig,
         use_container_width=True
     )
-
+    
     gap = selected_row["Urban"] - selected_row["Rural"]
 
     st.markdown(
