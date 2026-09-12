@@ -245,36 +245,40 @@ st.markdown("### The Ghana food story")
 m1, m2, m3, m4 = st.columns(4)
 
 with m1:
-    st.metric(
-        label="Women achieving MDD-W",
-        value="49.9%",
-        delta="Target: 50%",
-        delta_color="off"
-    )
+    with st.container(border=True):
+        st.metric(
+            label="Women achieving MDD-W",
+            value="49.9%",
+            delta="Target: 50%",
+            delta_color="off"
+        )
 
 with m2:
-    st.metric(
-        label="Pulse supply (2010–2023)",
-        value="-39.3%",
-        delta="-39.3% Contraction",
-        delta_color="inverse"
-    )
+    with st.container(border=True):
+        st.metric(
+            label="Pulse supply (2010–2023)",
+            value="-39.3%",
+            delta="-39.3% Contraction",
+            delta_color="inverse"
+        )
 
 with m3:
-    st.metric(
-        label="Vegetable supply (2010–2023)",
-        value="-40.7%",
-        delta="-40.7% Contraction",
-        delta_color="inverse"
-    )
+    with st.container(border=True):
+        st.metric(
+            label="Vegetable supply (2010–2023)",
+            value="-40.7%",
+            delta="-40.7% Contraction",
+            delta_color="inverse"
+        )
 
 with m4:
-    st.metric(
-        label="Meat supply (2010–2023)",
-        value="+32.0%",
-        delta="+32.0% Expansion",
-        delta_color="normal"
-    )
+    with st.container(border=True):
+        st.metric(
+            label="Meat supply (2010–2023)",
+            value="+32.0%",
+            delta="+32.0% Expansion",
+            delta_color="normal"
+        )
 
 st.markdown("---")
 
