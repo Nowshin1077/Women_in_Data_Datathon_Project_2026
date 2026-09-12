@@ -39,23 +39,32 @@ st.markdown(
     .hero-text h1 {
         font-size: 3rem;
         margin-bottom: 0.3rem;
+        color: var(--text-color);
     }
 
     .hero-text p {
         font-size: 1.15rem;
-        color: #555;
+        color: var(--text-color);
+        opacity: 0.8;
     }
 
     .ghana-accent {
         font-size: 1.5rem;
         font-weight: 600;
         margin-bottom: 0.5rem;
+        color: var(--text-color);
+    }
+
+    /* Subtle grey container adapting cleanly to light/dark themes */
+    .metric-card, .insight-card {
+        background-color: rgba(128, 128, 128, 0.08);
+        border: 1px solid rgba(128, 128, 128, 0.2);
+        padding: 1.2rem;
+        border-radius: 12px;
+        color: var(--text-color);
     }
 
     .metric-card {
-        background-color: #f7f7f7;
-        padding: 1.2rem;
-        border-radius: 12px;
         text-align: center;
         min-height: 115px;
     }
@@ -63,22 +72,33 @@ st.markdown(
     .metric-value {
         font-size: 2rem;
         font-weight: 700;
+        color: var(--text-color);
     }
 
     .metric-label {
         font-size: 0.9rem;
-        color: #666;
+        color: var(--text-color);
+        opacity: 0.75;
     }
 
     .insight-card {
-        background-color: #f8f8f8;
-        padding: 1.2rem;
-        border-radius: 12px;
         margin-bottom: 1rem;
     }
 
+    .insight-card h4 {
+        color: var(--text-color);
+        margin-top: 0;
+    }
+
+    .insight-card p {
+        color: var(--text-color);
+        opacity: 0.85;
+        margin-bottom: 0;
+    }
+
     .small-note {
-        color: #666;
+        color: var(--text-color);
+        opacity: 0.65;
         font-size: 0.85rem;
     }
     </style>
@@ -343,18 +363,22 @@ with tab1:
         y="Food Group",
         orientation="h",
         title="Change in food supply, 2010-2023",
-        labels={"Change (%)": "Change (%)"}
+        labels={"Change (%)": "Change (%)"},
+        color_discrete_sequence=["#7EB2DD"]
     )
 
     fig.add_vline(
         x=0,
-        line_width=1
+        line_width=1,
+        line_color="gray"
     )
 
     fig.update_layout(
         height=500,
         yaxis={"categoryorder": "total ascending"},
-        showlegend=False
+        showlegend=False,
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)"
     )
 
     st.plotly_chart(
@@ -440,7 +464,8 @@ with tab2:
         x="Geographic Level",
         y="Women consuming (%)",
         text="Women consuming (%)",
-        title=f"{selected_food} consumption by geographic level"
+        title=f"{selected_food} consumption by geographic level",
+        color_discrete_sequence=["#7EB2DD"]
     )
 
     fig.update_traces(
@@ -452,7 +477,9 @@ with tab2:
         yaxis_title="Women consuming (%)",
         xaxis_title="",
         yaxis_range=[0, 100],
-        height=450
+        height=450,
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)"
     )
 
     st.plotly_chart(
@@ -580,19 +607,24 @@ with tab3:
     })
 
     fig = px.bar(
-        substitution_df,
+        affordability_df,
         x="Scenario",
-        y=[
-            "Animal protein (g)",
-            "Plant protein (g)"
-        ],
-        barmode="stack",
-        title="Protein source composition"
+        y="Cost (PPP/day)",
+        text="Cost (PPP/day)",
+        title="Healthy diet cost",
+        color_discrete_sequence=["#7EB2DD"]
+    )
+
+    fig.update_traces(
+        texttemplate="$%{text:.2f}",
+        textposition="outside"
     )
 
     fig.update_layout(
         height=400,
-        yaxis_title="Amount (g)"
+        yaxis_title="PPP dollars per day",
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)"
     )
 
     st.plotly_chart(
