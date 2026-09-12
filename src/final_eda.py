@@ -199,7 +199,7 @@ for i, value in enumerate(mdd_achievement["Value"]):
     )
 
 plt.tight_layout()
-plt.show()
+# plt.show()
 
 # ==============================================================================
 # 8. FOOD GROUP CONSUMPTION VISUALIZATION
@@ -233,7 +233,7 @@ plt.xticks(rotation=75, ha="right")
 
 plt.legend()
 plt.tight_layout()
-plt.show()
+# plt.show()
 
 # ==============================================================================
 # 9. GHANA VS KENYA MDD-W COMPARISON
@@ -753,7 +753,7 @@ plt.legend(
 plt.grid(axis="y", alpha=0.3)
 
 plt.tight_layout()
-plt.show()
+# plt.show()
 
 # ==============================================================================
 # 18. FOOD BALANCES CHART 2: FOOD SUPPLY CHANGE
@@ -794,7 +794,7 @@ for bar, value in zip(bars, food_supply_chart["% Change"]):
 plt.grid(axis="x", alpha=0.3)
 
 plt.tight_layout()
-plt.show()
+# plt.show()
 
 # ==============================================================================
 # 19. FOOD BALANCES KEY FINDINGS
@@ -891,7 +891,7 @@ plt.ylabel("Cost (Int$ PPP per person per day)")
 plt.xticks(cohd_trend["Year"], rotation=45)
 
 plt.tight_layout()
-plt.show()
+# plt.show()
 
 # ==============================================================================
 # 21. 2021 HEALTHY DIET BASKET
@@ -965,7 +965,7 @@ plt.xlabel("Cost (Int$ PPP per person per day)")
 plt.ylabel("Food Group")
 
 plt.tight_layout()
-plt.show()
+# plt.show()
 
 # ==============================================================================
 # 22. PROTEIN SUBSTITUTION SIMULATION
@@ -1074,7 +1074,7 @@ plt.ylabel("Cost Reduction (%)")
 plt.grid(True)
 
 plt.tight_layout()
-plt.show()
+# plt.show()
 
 # ==============================================================================
 # 23. HEALTHY DIET AFFORDABILITY SIMULATION
@@ -1177,7 +1177,7 @@ plt.ylabel("Density")
 plt.legend()
 
 plt.tight_layout()
-plt.show()
+# plt.show()
 
 # ==============================================================================
 # 24. FINAL PROJECT FINDINGS
