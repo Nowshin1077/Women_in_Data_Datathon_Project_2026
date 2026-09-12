@@ -39,32 +39,23 @@ st.markdown(
     .hero-text h1 {
         font-size: 3rem;
         margin-bottom: 0.3rem;
-        color: var(--text-color);
     }
 
     .hero-text p {
         font-size: 1.15rem;
-        color: var(--text-color);
-        opacity: 0.8;
+        color: #555;
     }
 
     .ghana-accent {
         font-size: 1.5rem;
         font-weight: 600;
         margin-bottom: 0.5rem;
-        color: var(--text-color);
-    }
-
-    /* Soft grey cards in Light Mode, dark grey cards in Dark Mode */
-    .metric-card, .insight-card {
-        background-color: rgba(128, 128, 128, 0.1);
-        border: 1px solid rgba(128, 128, 128, 0.22);
-        padding: 1.2rem;
-        border-radius: 12px;
-        color: var(--text-color);
     }
 
     .metric-card {
+        background-color: #f7f7f7;
+        padding: 1.2rem;
+        border-radius: 12px;
         text-align: center;
         min-height: 115px;
     }
@@ -72,33 +63,22 @@ st.markdown(
     .metric-value {
         font-size: 2rem;
         font-weight: 700;
-        color: var(--text-color);
     }
 
     .metric-label {
         font-size: 0.9rem;
-        color: var(--text-color);
-        opacity: 0.75;
+        color: #666;
     }
 
     .insight-card {
+        background-color: #f8f8f8;
+        padding: 1.2rem;
+        border-radius: 12px;
         margin-bottom: 1rem;
     }
 
-    .insight-card h4 {
-        color: var(--text-color);
-        margin-top: 0;
-    }
-
-    .insight-card p {
-        color: var(--text-color);
-        opacity: 0.85;
-        margin-bottom: 0;
-    }
-
     .small-note {
-        color: var(--text-color);
-        opacity: 0.65;
+        color: #666;
         font-size: 0.85rem;
     }
     </style>
@@ -357,35 +337,31 @@ with tab1:
         "concentrated in cereals and meat, while pulses and vegetables declined."
     )
 
-fig = px.bar(
+    fig = px.bar(
         food_supply_change,
         x="Change (%)",
         y="Food Group",
         orientation="h",
         title="Change in food supply, 2010-2023",
-        labels={"Change (%)": "Change (%)"},
-        color_discrete_sequence=["#7EB2DD"]
+        labels={"Change (%)": "Change (%)"}
     )
 
     fig.add_vline(
         x=0,
-        line_width=1,
-        line_color="gray"
+        line_width=1
     )
 
     fig.update_layout(
         height=500,
         yaxis={"categoryorder": "total ascending"},
-        showlegend=False,
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)"
+        showlegend=False
     )
 
     st.plotly_chart(
         fig,
         use_container_width=True
     )
-    
+
     col1, col2 = st.columns(2)
 
     with col1:
@@ -459,13 +435,12 @@ with tab2:
         ]
     })
 
-fig = px.bar(
+    fig = px.bar(
         comparison,
         x="Geographic Level",
         y="Women consuming (%)",
         text="Women consuming (%)",
-        title=f"{selected_food} consumption by geographic level",
-        color_discrete_sequence=["#7EB2DD"]
+        title=f"{selected_food} consumption by geographic level"
     )
 
     fig.update_traces(
@@ -477,16 +452,14 @@ fig = px.bar(
         yaxis_title="Women consuming (%)",
         xaxis_title="",
         yaxis_range=[0, 100],
-        height=450,
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)"
+        height=450
     )
 
     st.plotly_chart(
         fig,
         use_container_width=True
     )
-    
+
     gap = selected_row["Urban"] - selected_row["Rural"]
 
     st.markdown(
