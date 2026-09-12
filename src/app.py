@@ -39,28 +39,29 @@ st.markdown(
     .hero-text h1 {
         font-size: 3rem;
         margin-bottom: 0.3rem;
-        color: inherit;
+        color: var(--text-color);
     }
 
     .hero-text p {
         font-size: 1.15rem;
-        opacity: 0.8;
+        color: var(--text-color);
+        opacity: 0.85;
     }
 
     .ghana-accent {
         font-size: 1.5rem;
         font-weight: 600;
         margin-bottom: 0.5rem;
-        color: inherit;
+        color: var(--text-color);
     }
 
-    /* Light Mode Card Styling (Grey, non-white) */
+    /* Base Card Styling - Light Mode Default (Grey like SS) */
     .metric-card, .insight-card {
-        background-color: #f1f3f5 !important;
-        border: 1px solid #e2e8f0 !important;
-        border-radius: 12px;
+        background-color: #f1f3f5;
+        border: 1px solid #e2e8f0;
         padding: 1.2rem;
-        color: #1e293b !important;
+        border-radius: 12px;
+        color: #1e293b;
     }
 
     .metric-card {
@@ -68,65 +69,75 @@ st.markdown(
         min-height: 115px;
     }
 
-    .insight-card {
-        margin-bottom: 1rem;
-    }
-
     .metric-value {
         font-size: 2rem;
         font-weight: 700;
-        color: #0f172a !important;
+        color: #0f172a;
     }
 
     .metric-label {
         font-size: 0.9rem;
-        color: #475569 !important;
+        color: #475569;
+    }
+
+    .insight-card {
+        margin-bottom: 1rem;
     }
 
     .insight-card h4 {
-        color: #0f172a !important;
+        color: #0f172a;
         margin-top: 0;
     }
 
     .insight-card p {
-        color: #334155 !important;
+        color: #334155;
         margin-bottom: 0;
     }
 
     .small-note {
-        color: #64748b !important;
+        color: #64748b;
         font-size: 0.85rem;
     }
 
-    /* Dark Mode Overrides (Subtle dark-grey container) */
+    /* Dark Mode Adaptability: Target dark background */
     @media (prefers-color-scheme: dark) {
         .metric-card, .insight-card {
             background-color: #1e2530 !important;
             border: 1px solid #2d3748 !important;
-            color: #e2e8f0 !important;
-        }
-        .metric-value {
             color: #f8fafc !important;
         }
-        .metric-label {
-            color: #94a3b8 !important;
+        .metric-value, .insight-card h4 {
+            color: #ffffff !important;
         }
-        .insight-card h4 {
-            color: #f8fafc !important;
-        }
-        .insight-card p {
+        .metric-label, .insight-card p {
             color: #cbd5e1 !important;
         }
-        .small-note {
-            color: #94a3b8 !important;
-        }
+    }
+
+    /* Streamlit in-app dark theme override (when user toggles theme manually in settings) */
+    [data-theme="dark"] .metric-card, 
+    [data-theme="dark"] .insight-card,
+    .stApp[data-test-script-state] [data-testid="stAppViewContainer"] .metric-card,
+    .stApp[data-test-script-state] [data-testid="stAppViewContainer"] .insight-card {
+        background-color: var(--secondary-background-color);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--text-color);
+    }
+    
+    [data-theme="dark"] .metric-value,
+    [data-theme="dark"] .insight-card h4 {
+        color: var(--text-color);
+    }
+
+    [data-theme="dark"] .metric-label,
+    [data-theme="dark"] .insight-card p {
+        color: var(--text-color);
+        opacity: 0.85;
     }
     </style>
     """,
-    
     unsafe_allow_html=True
 )
-
 
 # ==============================================================================
 # 3. CORE DATA
@@ -385,7 +396,7 @@ with tab1:
         orientation="h",
         title="Change in food supply, 2010-2023",
         labels={"Change (%)": "Change (%)"},
-        color_discrete_sequence=["#72b5f8"]  # Exact light blue bar fill from screenshot
+        color_discrete_sequence=["#82c4f8"]
     )
 
     fig.add_vline(
@@ -398,9 +409,8 @@ with tab1:
         height=500,
         yaxis={"categoryorder": "total ascending"},
         showlegend=False,
-        plot_bgcolor="rgba(0,0,0,0)",
         paper_bgcolor="rgba(0,0,0,0)",
-        margin=dict(l=20, r=20, t=40, b=20)
+        plot_bgcolor="rgba(0,0,0,0)"
     )
 
     st.plotly_chart(
@@ -487,7 +497,7 @@ with tab2:
         y="Women consuming (%)",
         text="Women consuming (%)",
         title=f"{selected_food} consumption by geographic level",
-        color_discrete_sequence=["#72b5f8"]  # Exact light blue from screenshot
+        color_discrete_sequence=["#82c4f8"]
     )
 
     fig.update_traces(
@@ -498,11 +508,10 @@ with tab2:
     fig.update_layout(
         yaxis_title="Women consuming (%)",
         xaxis_title="",
-        yaxis_range=[0, max(comparison["Women consuming (%)"].max() + 10, 50)],
+        yaxis_range=[0, max(comparison["Women consuming (%)"].max() * 1.25, 40)],
         height=450,
-        plot_bgcolor="rgba(0,0,0,0)",
         paper_bgcolor="rgba(0,0,0,0)",
-        margin=dict(l=20, r=20, t=40, b=20)
+        plot_bgcolor="rgba(0,0,0,0)"
     )
 
     st.plotly_chart(
