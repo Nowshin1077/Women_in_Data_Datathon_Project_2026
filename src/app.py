@@ -45,7 +45,7 @@ st.markdown(
     .hero-text p {
         font-size: 1.15rem;
         color: var(--text-color);
-        opacity: 0.8;
+        opacity: 0.85;
     }
 
     .ghana-accent {
@@ -55,9 +55,10 @@ st.markdown(
         color: var(--text-color);
     }
 
+    /* Theme-adaptive grey card for both Light and Dark mode */
     .metric-card {
-        background-color: var(--secondary-background-color);
-        border: 1px solid var(--border-color, rgba(128, 128, 128, 0.2));
+        background-color: rgba(128, 128, 128, 0.12);
+        border: 1px solid rgba(128, 128, 128, 0.2);
         padding: 1.2rem;
         border-radius: 12px;
         text-align: center;
@@ -77,11 +78,12 @@ st.markdown(
     }
 
     .insight-card {
-        background-color: var(--secondary-background-color);
-        border: 1px solid var(--border-color, rgba(128, 128, 128, 0.2));
+        background-color: rgba(128, 128, 128, 0.12);
+        border: 1px solid rgba(128, 128, 128, 0.2);
         padding: 1.2rem;
         border-radius: 12px;
         margin-bottom: 1rem;
+        color: var(--text-color);
     }
 
     .insight-card h4 {
@@ -355,31 +357,35 @@ with tab1:
         "concentrated in cereals and meat, while pulses and vegetables declined."
     )
 
-    fig = px.bar(
+ fig = px.bar(
         food_supply_change,
         x="Change (%)",
         y="Food Group",
         orientation="h",
         title="Change in food supply, 2010-2023",
-        labels={"Change (%)": "Change (%)"}
+        labels={"Change (%)": "Change (%)"},
+        color_discrete_sequence=["#7eb8f7"]  # Exact soft light blue from your screenshot
     )
 
     fig.add_vline(
         x=0,
-        line_width=1
+        line_width=1,
+        line_color="gray"
     )
 
     fig.update_layout(
         height=500,
         yaxis={"categoryorder": "total ascending"},
-        showlegend=False
+        showlegend=False,
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)"
     )
 
     st.plotly_chart(
         fig,
         use_container_width=True
     )
-
+    
     col1, col2 = st.columns(2)
 
     with col1:
