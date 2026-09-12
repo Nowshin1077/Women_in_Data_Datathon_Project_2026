@@ -39,29 +39,25 @@ st.markdown(
     .hero-text h1 {
         font-size: 3rem;
         margin-bottom: 0.3rem;
-        color: var(--text-color);
     }
 
     .hero-text p {
         font-size: 1.15rem;
-        color: var(--text-color);
-        opacity: 0.8;
     }
 
     .ghana-accent {
         font-size: 1.5rem;
         font-weight: 600;
         margin-bottom: 0.5rem;
-        color: var(--text-color);
     }
 
-    /* Subtle grey container matching screenshot: light grey in Light Mode, dark grey in Dark Mode */
+    /* Restores the exact light-colored card from your 'Before' screenshot */
     .metric-card, .insight-card {
-        background-color: rgba(128, 128, 128, 0.08);
-        border: 1px solid rgba(128, 128, 128, 0.2);
+        background-color: #f8f9fa !important;
+        border: 1px solid #e9ecef !important;
         padding: 1.2rem;
         border-radius: 12px;
-        color: var(--text-color);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
 
     .metric-card {
@@ -69,16 +65,16 @@ st.markdown(
         min-height: 115px;
     }
 
+    /* Force text inside the light cards to be dark and legible */
     .metric-value {
         font-size: 2rem;
         font-weight: 700;
-        color: var(--text-color);
+        color: #1a1a1a !important;
     }
 
     .metric-label {
         font-size: 0.9rem;
-        color: var(--text-color);
-        opacity: 0.75;
+        color: #555555 !important;
     }
 
     .insight-card {
@@ -86,26 +82,27 @@ st.markdown(
     }
 
     .insight-card h4 {
-        color: var(--text-color);
+        color: #1a1a1a !important;
         margin-top: 0;
     }
 
     .insight-card p {
-        color: var(--text-color);
-        opacity: 0.85;
+        color: #333333 !important;
         margin-bottom: 0;
     }
 
+    .insight-card strong {
+        color: #000000 !important;
+    }
+
     .small-note {
-        color: var(--text-color);
-        opacity: 0.65;
+        color: #666666 !important;
         font-size: 0.85rem;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
-
 
 # ==============================================================================
 # 3. CORE DATA
@@ -363,7 +360,8 @@ with tab1:
         y="Food Group",
         orientation="h",
         title="Change in food supply, 2010-2023",
-        labels={"Change (%)": "Change (%)"}
+        labels={"Change (%)": "Change (%)"},
+        color_discrete_sequence=["#75bbfd"]
     )
 
     fig.add_vline(
@@ -375,6 +373,11 @@ with tab1:
         height=500,
         yaxis={"categoryorder": "total ascending"},
         showlegend=False
+    )
+
+    st.plotly_chart(
+        fig,
+        use_container_width=True
     )
 
     st.plotly_chart(
