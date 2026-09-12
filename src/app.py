@@ -39,81 +39,53 @@ st.markdown(
     .hero-text h1 {
         font-size: 3rem;
         margin-bottom: 0.3rem;
-        color: var(--text-color);
     }
 
     .hero-text p {
         font-size: 1.15rem;
-        color: var(--text-color);
-        opacity: 0.85;
+        color: #555;
     }
 
     .ghana-accent {
         font-size: 1.5rem;
         font-weight: 600;
         margin-bottom: 0.5rem;
-        color: var(--text-color);
-    }
-
-    /* Fixed Whitish-Grey Card Style for BOTH Light and Dark Modes */
-    .metric-card, .insight-card {
-        background-color: #f6f7f9 !important;
-        border: 1px solid #dcdfe4 !important;
-        padding: 1.2rem !important;
-        border-radius: 12px !important;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12) !important;
     }
 
     .metric-card {
-        text-align: center !important;
-        min-height: 115px !important;
+        background-color: #f7f7f7;
+        padding: 1.2rem;
+        border-radius: 12px;
+        text-align: center;
+        min-height: 115px;
     }
 
-    /* Keep Numbers and Writing Dark & Visible Inside the Whitish Cards */
     .metric-value {
-        font-size: 2rem !important;
-        font-weight: 700 !important;
-        color: #111827 !important;
+        font-size: 2rem;
+        font-weight: 700;
     }
 
     .metric-label {
-        font-size: 0.9rem !important;
-        font-weight: 500 !important;
-        color: #4b5563 !important;
+        font-size: 0.9rem;
+        color: #666;
     }
 
     .insight-card {
-        margin-bottom: 1rem !important;
-    }
-
-    .insight-card h4 {
-        color: #111827 !important;
-        font-size: 1.15rem !important;
-        font-weight: 600 !important;
-        margin-top: 0 !important;
-        margin-bottom: 0.4rem !important;
-    }
-
-    .insight-card p {
-        color: #374151 !important;
-        font-size: 0.95rem !important;
-        line-height: 1.45 !important;
-        margin-bottom: 0 !important;
-    }
-
-    .insight-card strong {
-        color: #111827 !important;
-        font-weight: 700 !important;
+        background-color: #f8f8f8;
+        padding: 1.2rem;
+        border-radius: 12px;
+        margin-bottom: 1rem;
     }
 
     .small-note {
-        color: #6b7280 !important;
-        font-size: 0.85rem !important;
+        color: #666;
+        font-size: 0.85rem;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
+
 
 # ==============================================================================
 # 3. CORE DATA
@@ -371,22 +343,18 @@ with tab1:
         y="Food Group",
         orientation="h",
         title="Change in food supply, 2010-2023",
-        labels={"Change (%)": "Change (%)"},
-        color_discrete_sequence=["#82c4f8"]
+        labels={"Change (%)": "Change (%)"}
     )
 
     fig.add_vline(
         x=0,
-        line_width=1,
-        line_color="#94a3b8"
+        line_width=1
     )
 
     fig.update_layout(
         height=500,
         yaxis={"categoryorder": "total ascending"},
-        showlegend=False,
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)"
+        showlegend=False
     )
 
     st.plotly_chart(
@@ -472,8 +440,7 @@ with tab2:
         x="Geographic Level",
         y="Women consuming (%)",
         text="Women consuming (%)",
-        title=f"{selected_food} consumption by geographic level",
-        color_discrete_sequence=["#82c4f8"]
+        title=f"{selected_food} consumption by geographic level"
     )
 
     fig.update_traces(
@@ -484,17 +451,15 @@ with tab2:
     fig.update_layout(
         yaxis_title="Women consuming (%)",
         xaxis_title="",
-        yaxis_range=[0, max(comparison["Women consuming (%)"].max() * 1.25, 40)],
-        height=450,
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)"
+        yaxis_range=[0, 100],
+        height=450
     )
 
     st.plotly_chart(
         fig,
         use_container_width=True
     )
-    
+
     gap = selected_row["Urban"] - selected_row["Rural"]
 
     st.markdown(
@@ -845,7 +810,7 @@ st.markdown(
     "It is also an availability, access and affordability problem."
 )
 
-st. markdown(
+st.markdown(
     "**HerPlate Ghana** turns those signals into an interactive "
     "framework for exploring solutions."
 )
