@@ -55,7 +55,7 @@ st.markdown(
         color: var(--text-color);
     }
 
-    /* Subtle grey container adapting cleanly to light/dark themes */
+    /* Subtle grey container matching screenshot: light grey in Light Mode, dark grey in Dark Mode */
     .metric-card, .insight-card {
         background-color: rgba(128, 128, 128, 0.08);
         border: 1px solid rgba(128, 128, 128, 0.2);
@@ -363,22 +363,18 @@ with tab1:
         y="Food Group",
         orientation="h",
         title="Change in food supply, 2010-2023",
-        labels={"Change (%)": "Change (%)"},
-        color_discrete_sequence=["#7EB2DD"]
+        labels={"Change (%)": "Change (%)"}
     )
 
     fig.add_vline(
         x=0,
-        line_width=1,
-        line_color="gray"
+        line_width=1
     )
 
     fig.update_layout(
         height=500,
         yaxis={"categoryorder": "total ascending"},
-        showlegend=False,
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)"
+        showlegend=False
     )
 
     st.plotly_chart(
@@ -464,8 +460,7 @@ with tab2:
         x="Geographic Level",
         y="Women consuming (%)",
         text="Women consuming (%)",
-        title=f"{selected_food} consumption by geographic level",
-        color_discrete_sequence=["#7EB2DD"]
+        title=f"{selected_food} consumption by geographic level"
     )
 
     fig.update_traces(
@@ -477,9 +472,7 @@ with tab2:
         yaxis_title="Women consuming (%)",
         xaxis_title="",
         yaxis_range=[0, 100],
-        height=450,
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)"
+        height=450
     )
 
     st.plotly_chart(
@@ -607,24 +600,19 @@ with tab3:
     })
 
     fig = px.bar(
-        affordability_df,
+        substitution_df,
         x="Scenario",
-        y="Cost (PPP/day)",
-        text="Cost (PPP/day)",
-        title="Healthy diet cost",
-        color_discrete_sequence=["#7EB2DD"]
-    )
-
-    fig.update_traces(
-        texttemplate="$%{text:.2f}",
-        textposition="outside"
+        y=[
+            "Animal protein (g)",
+            "Plant protein (g)"
+        ],
+        barmode="stack",
+        title="Protein source composition"
     )
 
     fig.update_layout(
         height=400,
-        yaxis_title="PPP dollars per day",
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)"
+        yaxis_title="Amount (g)"
     )
 
     st.plotly_chart(
