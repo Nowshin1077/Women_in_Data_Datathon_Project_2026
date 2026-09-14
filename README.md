@@ -5,7 +5,7 @@
 Focusing on exploring global food systems using UN FAOSTAT datasets to address nutrition access, dietary diversity, and affordability.
 
 **Live Application**: [https://herplate-ghana.streamlit.app/](https://herplate-ghana.streamlit.app/)  
-** Interactive Tool GitHub Repository**: [https://github.com/Nowshin1077/Women_in_Data_Datathon_Project_2026/tree/main/src](https://github.com/Nowshin1077/Women_in_Data_Datathon_Project_2026/tree/main/src)
+**Interactive Tool GitHub Repository**: [https://github.com/Nowshin1077/Women_in_Data_Datathon_Project_2026/tree/main/src](https://github.com/Nowshin1077/Women_in_Data_Datathon_Project_2026/tree/main/src)
 
 ---
 
@@ -53,5 +53,7 @@ Focusing on exploring global food systems using UN FAOSTAT datasets to address n
 
 ---
 
-Presented by **Team Plateful of Data** for the Women in Data™ 2026 Datathon.
-See our full slide: 
+✨Presented by **Team Plateful of Data** for the Women in Data™ 2026 Datathon.
+
+## 📊 Presentation
+[🎞️ View the presentation slides ](https://github.com/Nowshin1077/Women_in_Data_Datathon_Project_2026/blob/main/HerPlate%20Ghana_%20Diagnosing%20Food%20System%20Breakdowns%20on%20Women%E2%80%99s%20Plates.pdf)
