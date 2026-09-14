@@ -11,8 +11,8 @@ Our core research question: **Where is the pathway from Ghana's food system to w
 ## 📂 Project Structure
 
 This project is organized into four main components:
-1.  `final_eda.py`: Ingestion and clean-up script that generates simulated FAOSTAT (FBS, CAHD, and MDD-W) datasets for Ghana to feed your model.
-2.  `app.py`: A highly-polished, interactive Streamlit application containing the HerPlate Diagnostic Matrix, value-chain pathway charts, and a live MILP (Mixed-Integer Linear Programming) optimization solver.
+1.  `final_eda.py`: Ingestion and clean-up script that generates simulated FAOSTAT (FBS, CAHD, and MDD-W) datasets for Ghana to feed the model.
+2.  `app.py`: A highly-polished, interactive Streamlit application containing the HerPlate Diagnostic Matrix, value-chain pathway charts.
 3.  `requirements.txt`: Python dependencies required to run the project.
 4.  `README.md`: This file, guiding you step-by-step through setting up and launching the tool.
 
@@ -49,7 +49,7 @@ pip install -r requirements.txt
 ```
 
 ### Step 4: Run Data Preparation
-Run the ingestion script to clean and output the aligned dataset files. This creates `cleaned_ghana_cahd.csv`, `cleaned_ghana_fbs.csv`, and `cleaned_ghana_mddw.csv` in your directory:
+Run the ingestion script to clean and output the aligned dataset files.
 ```bash
 src/final_eda.py
 or
@@ -63,5 +63,5 @@ streamlit run src/app.py
 or
 streamlit run app.py
 ```
-This will automatically launch the browser window running your beautiful **HerPlate Ghana** decision-support tool!
+This will automatically launch the browser window running **HerPlate Ghana** decision-support tool!
 
