@@ -31,6 +31,7 @@ Focusing on exploring global food systems using UN FAOSTAT datasets to address n
 
 <img width="700" height="400" alt="image" src="https://github.com/user-attachments/assets/f01caa59-a861-4211-940f-736a6679522f" />
 
+Repository for EDA: [notebooks](https://github.com/Nowshin1077/Women_in_Data_Datathon_Project_2026/tree/main/notebooks) 
 
 ---
 
